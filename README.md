@@ -1,7 +1,7 @@
 # Recall
 Transform Your Audio into Insights: Transcribe, Analyze and Search
 
-### Hackathon Task : AI Track
+### Hackathon Task : Open Innovation
 
 ### Backend API Endpoints : https://amazebot.azurewebsites.net/docs
 
