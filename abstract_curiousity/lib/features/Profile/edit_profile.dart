@@ -1,5 +1,6 @@
 //
 
+import 'package:abstract_curiousity/features/HomePage/homepage.dart';
 import 'package:abstract_curiousity/features/Profile/bloc/profile_bloc.dart';
 import 'package:abstract_curiousity/features/Profile/services/profile_repository.dart';
 import 'package:abstract_curiousity/models/user.dart';
