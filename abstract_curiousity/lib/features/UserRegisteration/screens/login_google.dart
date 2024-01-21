@@ -1,6 +1,7 @@
 import 'package:abstract_curiousity/Features/UserRegisteration/screens/personaliseTopics.dart';
-import 'package:abstract_curiousity/Features/UserRegisteration/services/auth_repository.dart';
-import 'package:abstract_curiousity/Features/UserRegisteration/services/bloc/auth_bloc.dart';
+import 'package:abstract_curiousity/features/UserRegisteration/services/auth_repository.dart';
+import 'package:abstract_curiousity/features/UserRegisteration/services/bloc/auth_bloc.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
