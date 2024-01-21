@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    min-height: 100vh;
+    background: radial-gradient(92.87% 92.87% at 50.00% 7.13%, #36016E 0.21%, #090723 87.93%);
+}
+
+#root {
+    @apply h-screen
+}
+
+.bg-radial {
+    background: radial-gradient(92.87% 92.87% at 50.00% 7.13%, #36016E 0.21%, #090723 87.93%);
+}
+
+.all-shadow {
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.25);
+}
+
+::-webkit-scrollbar {
+    height: 1rem;
+    width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 100vh;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 100vh;
+    background-color: #7109E0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #831fee;
+}
