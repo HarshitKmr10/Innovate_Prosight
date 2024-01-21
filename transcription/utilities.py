@@ -3,11 +3,7 @@ import os
 import numpy as np
 
 def transcribe(audio_file_path, type = 'srt'):
-    openai.api_type = "open_ai"
-    openai.api_version = None
-    openai.api_base = "https://api.openai.com/v1"
-    openai.api_key = os.environ.get("OPENAI_API_KEY_oai")
-    openai.organization = os.environ.get("OPENAI_ORG")
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
     with open(audio_file_path, "rb") as f:
         # file_bytes = f.read()
         # get the filetpe from the path
@@ -16,17 +12,14 @@ def transcribe(audio_file_path, type = 'srt'):
     return transcript
 
 def translate(output_language, text):
-    openai.api_type = 'azure'
-    openai.api_version = "2023-03-15-preview"
-    openai.api_key = os.environ.get("OPENAI_API_KEY_AZURE")
-    openai.api_base = os.environ.get("OPENAI_API_KEY_BASE")
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
     SYSTEM_PROMPT = "You are a translator"
     USER_PROMPT = f"Translate to {output_language}:\n{text}"
     messages = []
     messages.append({"role":'system', 'content':SYSTEM_PROMPT})
     messages.append({"role":'user', 'content':USER_PROMPT})
     response = openai.ChatCompletion.create(
-        engine='gen',
+        model="gpt-3.5-turbo-16k",
         messages=messages,
         temperature=0.0001,
         request_timeout=120
@@ -35,18 +28,11 @@ def translate(output_language, text):
 
 def get_embedding(text, model="emb-gen"):
    text = text.replace("\n", " ")
-   openai.api_type = 'azure'
-   openai.api_version = "2023-03-15-preview"
-   openai.api_key = os.environ.get("OPENAI_API_KEY_AZURE")
-   openai.api_base = os.environ.get("OPENAI_API_KEY_BASE")
+   openai.api_key = os.environ.get("OPENAI_API_KEY")
    return np.array(openai.Embedding.create(input = [text], engine=model)['data'][0]['embedding'])
 
 def summarize_audio(audio_file_path):
-    openai.api_type = "open_ai"
-    openai.api_version = None
-    openai.api_base = "https://api.openai.com/v1"
-    openai.api_key = os.environ.get("OPENAI_API_KEY_oai")
-    openai.organization = os.environ.get("OPENAI_ORG")
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
     with open(audio_file_path, "rb") as f:
         # file_bytes = f.read()
         # get the filetpe from the path
@@ -66,11 +52,7 @@ def summarize_audio(audio_file_path):
     return response.choices[0]['message']['content']
 
 def summarize_text(text):
-    openai.api_type = "open_ai"
-    openai.api_version = None
-    openai.api_base = "https://api.openai.com/v1"
-    openai.api_key = os.environ.get("OPENAI_API_KEY_oai")
-    openai.organization = os.environ.get("OPENAI_ORG")
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
     SYSTEM_PROMPT = "You are a text summarizer"
     USER_PROMPT = f"Summarize the following text:\n{text}"
     messages = []
@@ -85,11 +67,7 @@ def summarize_text(text):
     return response.choices[0]['message']['content']
 
 def sentiment_audio(audio_file_path):
-    openai.api_type = "open_ai"
-    openai.api_version = None
-    openai.api_base = "https://api.openai.com/v1"
-    openai.api_key = os.environ.get("OPENAI_API_KEY_oai")
-    openai.organization = os.environ.get("OPENAI_ORG")
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
     with open(audio_file_path, "rb") as f:
         # file_bytes = f.read()
         # get the filetpe from the path
@@ -114,11 +92,7 @@ def sentiment_audio(audio_file_path):
     return response.choices[0]['message']['content']
 
 def sentiment_text(text):
-    openai.api_type = "open_ai"
-    openai.api_version = None
-    openai.api_base = "https://api.openai.com/v1"
-    openai.api_key = os.environ.get("OPENAI_API_KEY_oai")
-    openai.organization = os.environ.get("OPENAI_ORG")
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
     SYSTEM_PROMPT = """You are a text sentiment analyzer. You have to classify (probabilities, between 0 and 1) the sentiment of the text as positive, negative or neutral. return the result in JSON like this
     {
         "positive": <>,
@@ -152,11 +126,7 @@ def QnA(audio_file_paths, question):
     messages = []
     messages.append({"role":'system', 'content':SYSTEM_PROMPT})
     messages.append({"role":'user', 'content':USER_PROMPT})
-    openai.api_type = "open_ai"
-    openai.api_version = None
-    openai.api_base = "https://api.openai.com/v1"
-    openai.api_key = os.environ.get("OPENAI_API_KEY_oai")
-    openai.organization = os.environ.get("OPENAI_ORG")
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-16k",
         messages=messages,
@@ -172,11 +142,7 @@ def QnA_text(texts, question):
     messages = []
     messages.append({"role":'system', 'content':SYSTEM_PROMPT})
     messages.append({"role":'user', 'content':USER_PROMPT})
-    openai.api_type = "open_ai"
-    openai.api_version = None
-    openai.api_base = "https://api.openai.com/v1"
-    openai.api_key = os.environ.get("OPENAI_API_KEY_oai")
-    openai.organization = os.environ.get("OPENAI_ORG")
+    openai.api_key = os.environ.get("OPENAI_API_KEY")
     response = openai.ChatCompletion.create(
         model="gpt-3.5-turbo-16k",
         messages=messages,
@@ -188,10 +154,7 @@ def QnA_text(texts, question):
 
 def get_embedding(text, model="emb-gen"):
    text = text.replace("\n", " ")
-   openai.api_type = "azure"
-   openai.api_base = os.getenv("OPENAI_API_KEY_BASE")
-   openai.api_version = "2023-03-15-preview"
-   openai.api_key = os.getenv("OPENAI_API_KEY_AZURE")
+   openai.api_key = os.getenv("OPENAI_API_KEY")
    return np.array(openai.Embedding.create(input = [text], engine=model)['data'][0]['embedding'])
 def search(audio_file_names, query):
     transcripts = [transcribe(i, type = 'srt').split("\n\n") for i in audio_file_names]

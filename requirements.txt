@@ -2,5 +2,10 @@ fastapi
 uvicorn
 gunicorn
 colorama
+pandas
+numpy
+openpyxl
 openai
 python-multipart
+pydantic
+starlette
