@@ -6,10 +6,12 @@ from fastapi.openapi.utils import get_openapi
 from transcription.utilities import *
 from starlette.middleware import Middleware
 from starlette.middleware.cors import CORSMiddleware
+import os
 
 origins = [
     "*",
-    "http://localhost:5173"
+    "http://localhost:5173",
+    os.environ.get("CLIENT_URL")
 ]
 middleware = [
     Middleware(CORSMiddleware, allow_origins=origins, allow_methods="*")
