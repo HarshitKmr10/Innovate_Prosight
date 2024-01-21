@@ -1,4 +1,6 @@
-transformers
 fastapi
 uvicorn
-torch
+gunicorn
+colorama
+openai
+python-multipart
